@@ -1,6 +1,10 @@
 # ZHIPlayerManager
 Versatile management player plugin
+- originally made by [skywhale-zhi](https://github.com/skywhale-zhi)
+- translated to English by [TheTrueMomo](https://github.com/TheTrueMomo)
+- final patches/translations by Maxthegreat99
 
+# Translated README
 ## Features:
 
 ### 1. View player inventory and status
@@ -251,3 +255,5 @@ public class ExtraData
     int deathCount;
 }
 ```
+## Forked repository
+https://github.com/skywhale-zhi/ZHIPlayerManager
