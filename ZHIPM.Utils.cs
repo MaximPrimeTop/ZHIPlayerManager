@@ -14,10 +14,10 @@ namespace ZHIPlayerManager
     {
 
         /// <summary>
-        /// 同步玩家的人物数据数据，线上类型，仅同步在线玩家，在内存中的数据
-        /// </summary>
-        /// <param name="p">你要被同步的玩家</param>
-        /// <param name="pd">赋值给他的数据</param>
+        /// 同步Player的人物数据数据，线上类型，仅同步在线backed up successfully! Enable backup
+        ///backed up successfully! Enable backup </summary>
+        /// <param name="p">你要被同步的Player</param>
+        ///backed up successfully! Enable backup <param name="pd">赋值给他的数据</param>
         /// <returns></returns>
         public bool UpdatePlayerAll(TSPlayer p, PlayerData pd)
         {
@@ -421,7 +421,7 @@ namespace ZHIPlayerManager
             p.TPlayer.usedAmbrosia = (pd.usedAmbrosia == 1);
             p.TPlayer.unlockedSuperCart = (pd.unlockedSuperCart == 1);
             p.TPlayer.enabledSuperCart = (pd.enabledSuperCart == 1);
-            //玩家衣服服装，银河珍珠等属性的同步
+            //Player衣服服装，银河珍珠等属性的同步
             p.SendData(PacketTypes.PlayerInfo, "", p.Index, 0f, 0f, 0f, 0);
             //生命值同步，包含最大值上限
             p.SendData(PacketTypes.PlayerHp, "", p.Index, 0f, 0f, 0f, 0);
@@ -429,14 +429,14 @@ namespace ZHIPlayerManager
             p.SendData(PacketTypes.PlayerMana, "", p.Index, 0f, 0f, 0f, 0);
             //钓鱼完成任务数目
             p.SendData(PacketTypes.NumberOfAnglerQuestsCompleted, "", p.Index, 0f, 0f, 0f, 0);
-            //清空玩家的buff
+            //清空Player的buff
             clearAllBuffFromPlayer(p);
             return true;
         }
 
 
         /// <summary>
-        /// 更新玩家的人物属性数据，线下更新类型，写入数据库，不是更新在线的操作
+        /// 更新Player的人物属性数据，线下更新类型，写入数backed up successfully! Enable backup
         /// </summary>
         /// <param name="accid"></param>
         /// <param name="pd"></param>
@@ -494,16 +494,16 @@ namespace ZHIPlayerManager
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("错误：UpdateTshockDBCharac " + ex.ToString());
-                Console.WriteLine("错误：UpdateTshockDBCharac " + ex.ToString());
+                TShock.Log.Error("Error: UpdateTshockDBCharac " + ex.ToString());
+                Console.WriteLine("Error: UpdateTshockDBCharac " + ex.ToString());
                 return false;
             }
         }
 
 
         /// <summary>
-        /// 在线重置一个玩家的人物数据，离线自己删数据库去
-        /// </summary>
+        /// 在线重置一个Player的人物数据，离线自己删数据库去
+        /// backed up successfully! Enable backup </summary>
         /// <param name="p"></param>
         /// <returns></returns>
         public bool ResetPlayer(TSPlayer p)
@@ -633,15 +633,15 @@ namespace ZHIPlayerManager
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("错误 ResetPlayer ：" + ex.ToString());
-                Console.WriteLine("错误 ResetPlayer ：" + ex.ToString());
+                TShock.Log.Error("Error ResetPlayer :" + ex.ToString());
+                Console.WriteLine("Error ResetPlayer :" + ex.ToString());
                 return false;
             }
         }
 
 
         /// <summary>
-        /// 返回玩家身上物品的字符串，一般情况slot = items.length
+        /// 返回Player身上物品的字符串，一般情况slot backed up successfully! Enable backup items.length
         /// </summary>
         /// <param name="items"></param>
         /// <param name="slots"></param>
@@ -675,7 +675,7 @@ namespace ZHIPlayerManager
 
 
         /// <summary>
-        /// 返回离线玩家身上的字符串，一般情况slot = items.length
+        /// 返回离线Player身上的字符串，一般情况slot = backed up successfully! Enable backup.length
         /// </summary>
         /// <param name="items"></param>
         /// <param name="slots"></param>
@@ -779,7 +779,7 @@ namespace ZHIPlayerManager
             List<TSPlayer> list = BestFindPlayerByNameOrIndex(args.Parameters[0]);
             if (list.Count > 1)
             {
-                args.Player.SendInfoMessage("检测到符合该条件的玩家数目不唯一，请重新输入");
+                args.Player.SendInfoMessage("Multiple players matching the condition detected, please re-enter");
                 return;
             }
             //离线回档
@@ -796,7 +796,7 @@ namespace ZHIPlayerManager
                     PlayerData playerData = TShock.CharacterDB.GetPlayerData(new TSPlayer(-1), user.ID);
                     if (playerData == null || !playerData.exists)
                     {
-                        args.Player.SendInfoMessage("未在原数据库中查到该玩家，请检查输入是否正确，该玩家是否避免SSC检测，再重新输入");
+                        args.Player.SendInfoMessage("The player was not found, please check whether the input is correct, whether the player avoids SSC detection, and then re-enter");
                     }
                     else
                     {
@@ -805,25 +805,25 @@ namespace ZHIPlayerManager
                             PlayerData playerData2 = ZPDataBase.ReadZPlayerDB(new TSPlayer(-1), user.ID, slot);
                             if (playerData2 == null || !playerData2.exists)
                             {
-                                args.Player.SendMessage("回档失败！未找到 [" + user.ID + "-" + slot + "] 号该备份", new Color(255, 0, 0));
+                                args.Player.SendMessage("Rollback failed! No backup found for [" + user.ID + "-" + slot + "]", new Color(255, 0, 0));
                             }
                             else
                             {
                                 if (UpdateTshockDBCharac(user.ID, playerData2))
                                 {
-                                    args.Player.SendMessage($"玩家 [{user.Name}] 回档成功！启用备份 [ {user.ID.ToString() + "-" + slot} ]", new Color(0, 255, 0));
+                                    args.Player.SendMessage($"Player [{user.Name}] reverted successfully! enable backup [ {user.ID.ToString() + "-" + slot} ]", new Color(0, 255, 0));
                                 }
                                 else
                                 {
-                                    args.Player.SendMessage("回档失败！", new Color(255, 0, 0));
+                                    args.Player.SendMessage("Rollback failed!", new Color(255, 0, 0));
                                 }
                             }
                         }
                         catch (Exception ex)
                         {
-                            TShock.Log.Error("错误：BackUp " + ex.ToString());
-                            args.Player.SendErrorMessage("错误：BackUp " + ex.ToString());
-                            Console.WriteLine("错误：BackUp " + ex.ToString());
+                            TShock.Log.Error("Error: BackUp " + ex.ToString());
+                            args.Player.SendErrorMessage("Error: BackUp " + ex.ToString());
+                            Console.WriteLine("Error: BackUp " + ex.ToString());
                         }
                     }
                 }
@@ -837,12 +837,12 @@ namespace ZHIPlayerManager
                 {
                     if (args.Player.Index != list[0].Index)
                     {
-                        args.Player.SendMessage($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
-                        list[0].SendMessage("您已回档成功！", new Color(0, 255, 0));
+                        args.Player.SendMessage($"Player [{list[0].Name}] backed up successfully! Enable backup [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
+                        list[0].SendMessage("You have successfully rolled back the file!", new Color(0, 255, 0));
                     }
                     else
                     {
-                        args.Player.SendMessage($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
+                        args.Player.SendMessage($"Player [{list[0].Name}] backed up successfully! Enable backup [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
                     }
                 }
                 //如果他是管理，那就不用向原版数据写入了
@@ -850,17 +850,17 @@ namespace ZHIPlayerManager
                 {
                     if (args.Player.Index != list[0].Index)
                     {
-                        args.Player.SendMessage($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
-                        list[0].SendMessage("您已回档成功！", new Color(0, 255, 0));
+                        args.Player.SendMessage($"Player [{list[0].Name}] backed up successfully! Enable backup [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
+                        list[0].SendMessage("You have successfully rolled back the file!", new Color(0, 255, 0));
                     }
                     else
                     {
-                        args.Player.SendMessage($"玩家 [{list[0].Name}] 回档成功！启用备份 [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
+                        args.Player.SendMessage($"Player [{list[0].Name}] backed up successfully! Enable backup [ {list[0].Account.ID + "-" + slot} ]", new Color(0, 255, 0));
                     }
                 }
                 else
                 {
-                    args.Player.SendMessage("回档失败！未备份数据或该玩家未登录", new Color(255, 0, 0));
+                    args.Player.SendMessage("Rollback failed! Data is not backed up or the Player is not logged in", new Color(255, 0, 0));
                 }
             }
         }
@@ -881,7 +881,7 @@ namespace ZHIPlayerManager
                 h = min / 60L;
                 min %= 60L;
             }
-            return $"{h}小时 {min}分钟 {s}秒";
+            return $"{h} hours {min} minutes {s} seconds";
         }
 
 
@@ -906,7 +906,7 @@ namespace ZHIPlayerManager
             }
             else
             {
-                return $"{platinum}铂金币  {gold}金币  {silver}银币  {copper}铜币";
+                return $"{platinum}platinum  {gold}gold  {silver}silver  {copper}copper";
             }
         }
 
@@ -971,25 +971,25 @@ namespace ZHIPlayerManager
                 switch (v.Key)//处理一下特殊npc
                 {
                     case 592:
-                        sb.Append($"蹦跶{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
+                        sb.Append($"Bounce {Lang.GetNPCNameValue(v.Key)}({v.Value}),");
                         break;
                     case 593:
-                        sb.Append($"游雨{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
+                        sb.Append($"You Yu{Lang.GetNPCNameValue(v.Key)}({v.Value}),");
                         break;
                     case 564:
-                        sb.Append($"T1{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
+                        sb.Append($"T1{Lang.GetNPCNameValue(v.Key)}({v.Value}),");
                         break;
                     case 565:
-                        sb.Append($"T3{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
+                        sb.Append($"T3{Lang.GetNPCNameValue(v.Key)}({v.Value}),");
                         break;
                     case 576:
-                        sb.Append($"T2{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
+                        sb.Append($"T2{Lang.GetNPCNameValue(v.Key)}({v.Value}),");
                         break;
                     case 577:
-                        sb.Append($"T3{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
+                        sb.Append($"T3{Lang.GetNPCNameValue(v.Key)}({v.Value}),");
                         break;
                     case 398:
-                        sb.Append("月亮领主(" + v.Value + ")");
+                        sb.Append("Moon Lord(" + v.Value + ")");
                         break;
                     default:
                         sb.Append($"{Lang.GetNPCNameValue(v.Key)}({v.Value})，");
@@ -1000,7 +1000,7 @@ namespace ZHIPlayerManager
             }
             if (sb.Length == 0)
             {
-                sb.Append("无");
+                sb.Append("None");
             }
             return sb.ToString().Trim('，');
         }
@@ -1025,7 +1025,7 @@ namespace ZHIPlayerManager
         /// 导出这个用户成存档plr
         /// </summary>
         /// <param name="player"></param>
-        /// <param name="time"> 如果你想导出这个玩家的游玩时间就填，单位秒 </param>
+        /// <param name="time"> 如果你想导出这个Player的游玩时间就填，单位秒 </parabacked up successfully! Enable backup>
         /// <returns></returns>
         public bool ExportPlayer(Player? player, long time = 0L)
         {
@@ -1097,18 +1097,18 @@ namespace ZHIPlayerManager
             }
             catch (Exception ex)
             {
-                TShock.Log.Error("错误：ExportPlayer " + ex.ToString());
-                TShock.Log.Error("路径：" + playerFileData.Path + " 名字：" + text);
-                Console.WriteLine("错误：ExportPlayer " + ex.ToString());
-                Console.WriteLine("路径：" + playerFileData.Path + " 名字：" + text);
+                TShock.Log.Error("Error: ExportPlayer " + ex.ToString());
+                TShock.Log.Error("Path: " + playerFileData.Path + " name:" + text);
+                Console.WriteLine("Error: ExportPlayer " + ex.ToString());
+                Console.WriteLine("Path: " + playerFileData.Path + " name:" + text);
                 return false;
             }
         }
 
 
         /// <summary>
-        /// 创造一个玩家，复制其数据，用于导出人物存档
-        /// </summary>
+        /// 创造一个Player，复制其数据，用于导出人物存档
+        ///backed up successfully! Enable backup </summary>
         /// <param name="name"></param>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -1517,8 +1517,8 @@ namespace ZHIPlayerManager
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Info("正常的意外因玩家 [ " + name + " ] 数据残缺而导出人物失败 CreateAPlayer");
-                    Console.WriteLine("正常的意外因玩家 [ " + name + " ] 数据残缺而导出人物失败 CreateAPlayer");
+                    TShock.Log.Info("Normal accident due to Player [ " + name + " ] backed up successfully! Enable backup CreateAPlayer");
+                    Console.WriteLine("Normal accident due to Player [ " + name + " ] backed up successfully! Enable backup CreateAPlayer");
                     return null;
                 }
             }
@@ -1526,7 +1526,7 @@ namespace ZHIPlayerManager
 
 
         /// <summary>
-        /// 最好的在线查找，先查找用户索引，索引不会被名字干扰，找不到再匹配名字完全相同的玩家，包括大小写，再找不到就模糊查找，不区分大小写
+        /// 最好的在线查找，先查找用户索引，索引不会被名字干扰，找不到再匹配名字完全相同的Player，包括大小写，再找不到就模糊查找，不backed up successfully! Enable backup
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -1562,7 +1562,7 @@ namespace ZHIPlayerManager
 
 
         /// <summary>
-        /// 获得这个玩家身上的钱币数目，单位铜币，支持离线和在线
+        /// 获得这个Player身上的钱币数目，单位铜币，支持离线和backed up successfully! Enable backup
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -1611,8 +1611,8 @@ namespace ZHIPlayerManager
 
 
         /// <summary>
-        /// 清理这个玩家身上所有buff
-        /// </summary>
+        /// 清理这个Player身上所有buff
+        ///backed up successfully! Enable backup </summary>
         /// <param name="ts"></param>
         public void clearAllBuffFromPlayer(TSPlayer ts)
         {
@@ -1648,10 +1648,10 @@ namespace ZHIPlayerManager
 
 
         /// <summary>
-        /// 向某个玩家发送悬浮字体
-        /// </summary>
-        /// <param name="ts"> 需要发送的玩家 </param>
-        /// <param name="text"> 内容文本 </param>
+        /// 向某个Player发送悬浮字体
+        ///backed up successfully! Enable backupsummary>
+        /// <param name="ts"> 需要发送的Player </param>
+        ///backed up successfully! Enable backup <param name="text"> 内容文本 </param>
         /// <param name="color"> 颜色 </param>
         /// <param name="pos"> 位置 </param>
         public void SendText(TSPlayer ts, string text, Color color, Vector2 pos)
@@ -1661,13 +1661,12 @@ namespace ZHIPlayerManager
 
 
         /// <summary>
-        /// 给所有玩家发送悬浮字体，但是根据发起者区分颜色
-        /// </summary>
-        /// <param name="ts"> 需要发送的玩家 </param>
-        /// <param name="text"> 发送文本 </param>
+        /// 给所有Player发送悬浮字体，但是根据发起者区分颜色backed up successfully! Enable backup </summary>
+        /// <param name="ts"> 需要发送的Player </param>
+        ///backed up successfully! Enable backup <param name="text"> 发送文本 </param>
         /// <param name="color1"> 被发送者所看见的颜色 </param>
-        /// <param name="color2"> 除了被发送者其他玩家所看见的颜色 </param>
-        /// <param name="pos"> 位置 </param>
+        /// <param name="color2"> 除了被发送者其他Player所看见的颜色 </param>
+        ///backed up successfully! Enable backup <param name="pos"> 位置 </param>
         public void SendAllText(TSPlayer ts, string text, Color color1, Color color2, Vector2 pos)
         {
             if (!ts.RealPlayer || ts.ConnectionAlive)
@@ -1688,7 +1687,7 @@ namespace ZHIPlayerManager
             StringBuilder sb = new StringBuilder();
             Dictionary<int, int> sortpairs = new Dictionary<int, int>();
 
-            sb.AppendLine($"共有 [c/74F3C9:{playerAndDamage.Count}] 位玩家击败了 [c/74F3C9:{BossName}]");
+            sb.AppendLine($"A total of [c/74F3C9:{playerAndDamage.Count}] Players defeated [c/74F3C9:{BossName}]");
             //简单的排个序
             while (playerAndDamage.Count > 0)
             {
@@ -1711,7 +1710,7 @@ namespace ZHIPlayerManager
 
             foreach (var v in sortpairs)
             {
-                sb.AppendLine($"{TShock.UserAccounts.GetUserAccountByID(v.Key).Name}    伤害: [c/74F3C9:{v.Value}]    比重: {v.Value * 1.0f / alldamage:0.00%} ");
+                sb.AppendLine($"{TShock.UserAccounts.GetUserAccountByID(v.Key).Name}    Damage: [c/74F3C9:{v.Value}]    Specific Gravity: {v.Value * 1.0f / alldamage:0.00%} ");
             }
             TSPlayer.All.SendMessage(sb.ToString(), Color.Bisque);
         }

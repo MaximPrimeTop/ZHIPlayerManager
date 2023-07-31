@@ -149,9 +149,9 @@ namespace ZHIPlayerManager
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Error("错误：ReadZPlayerDB " + ex.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：ReadZPlayerDB " + ex.ToString());
-                    Console.WriteLine("错误：ReadZPlayerDB " + ex.ToString());
+                    TShock.Log.Error("Error： ReadZPlayerDB " + ex.ToString());
+                    TSPlayer.All.SendErrorMessage("Error： ReadZPlayerDB " + ex.ToString());
+                    Console.WriteLine("Error： ReadZPlayerDB " + ex.ToString());
                     return playerData;
                 }
             }
@@ -169,7 +169,7 @@ namespace ZHIPlayerManager
                 {
                     return false;
                 }
-                if (slot > config.每个玩家最多几个备份存档 || slot < 1)
+                if (slot > config.MaximumNumberOfBackupFilesPerPlayer || slot < 1)
                 {
                     return false;
                 }
@@ -223,9 +223,9 @@ namespace ZHIPlayerManager
                     }
                     catch (Exception ex)
                     {
-                        TShock.Log.Error("错误：WriteZPlayerDB " + ex.ToString());
-                        TSPlayer.All.SendErrorMessage("错误：WriteZPlayerDB " + ex.ToString());
-                        Console.WriteLine("错误：WriteZPlayerDB " + ex.ToString());
+                        TShock.Log.Error("Error： WriteZPlayerDB " + ex.ToString());
+                        TSPlayer.All.SendErrorMessage("Error：vWriteZPlayerDB " + ex.ToString());
+                        Console.WriteLine("Error： WriteZPlayerDB " + ex.ToString());
                         return false;
                     }
                 }
@@ -275,9 +275,9 @@ namespace ZHIPlayerManager
                 }
                 catch (Exception ex2)
                 {
-                    TShock.Log.Error("错误：WriteZPlayerDB 2 " + ex2.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：WriteZPlayerDB 2 " + ex2.ToString());
-                    Console.WriteLine("错误：WriteZPlayerDB 2 " + ex2.ToString());
+                    TShock.Log.Error("Error： WriteZPlayerDB 2 " + ex2.ToString());
+                    TSPlayer.All.SendErrorMessage("Error： WriteZPlayerDB 2 " + ex2.ToString());
+                    Console.WriteLine("Error： WriteZPlayerDB 2 " + ex2.ToString());
                     return false;
                 }
             }
@@ -310,9 +310,9 @@ namespace ZHIPlayerManager
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Error("错误：getZPlayerDBMaxSlot " + ex.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：getZPlayerDBMaxSlot " + ex.ToString());
-                    Console.WriteLine("错误：getZPlayerDBMaxSlot " + ex.ToString());
+                    TShock.Log.Error("Error： getZPlayerDBMaxSlot " + ex.ToString());
+                    TSPlayer.All.SendErrorMessage("Error： getZPlayerDBMaxSlot " + ex.ToString());
+                    Console.WriteLine("Error： getZPlayerDBMaxSlot " + ex.ToString());
                 }
                 return num;
             }
@@ -330,7 +330,7 @@ namespace ZHIPlayerManager
                     return false;
                 }
                 int num = getZPlayerDBMaxSlot(player, player.Account.ID, out List<string> text);
-                if (num < config.每个玩家最多几个备份存档)
+                if (num < config.MaximumNumberOfBackupFilesPerPlayer)
                 {
                     try
                     {
@@ -345,9 +345,9 @@ namespace ZHIPlayerManager
                     }
                     catch (Exception ex)
                     {
-                        TShock.Log.Error("错误：AddZPlayerDB " + ex.ToString());
-                        TSPlayer.All.SendErrorMessage("错误：AddZPlayerDB " + ex.ToString());
-                        Console.WriteLine("错误：AddZPlayerDB " + ex.ToString());
+                        TShock.Log.Error("Error： AddZPlayerDB " + ex.ToString());
+                        TSPlayer.All.SendErrorMessage("Error：AddZPlayerDB " + ex.ToString());
+                        Console.WriteLine("Error: AddZPlayerDB " + ex.ToString());
                         return false;
                     }
                     return WriteZPlayerDB(player, 1);
@@ -356,7 +356,7 @@ namespace ZHIPlayerManager
                 {
                     try
                     {
-                        for(int c = 1; c < config.每个玩家最多几个备份存档; c++)
+                        for(int c = 1; c < config.MaximumNumberOfBackupFilesPerPlayer; c++)
                         {
                             text.RemoveAll(x => x.Equals(player.Account.ID.ToString() + "-" + c.ToString()));
                         }
@@ -368,9 +368,9 @@ namespace ZHIPlayerManager
                     }
                     catch (Exception ex2)
                     {
-                        TShock.Log.Error("错误：AddZPlayerDB 1 " + ex2.ToString());
-                        TSPlayer.All.SendErrorMessage("错误：AddZPlayerDB 1 " + ex2.ToString());
-                        Console.WriteLine("错误：AddZPlayerDB 1 " + ex2.ToString());
+                        TShock.Log.Error("Error： AddZPlayerDB 1 " + ex2.ToString());
+                        TSPlayer.All.SendErrorMessage("Error： AddZPlayerDB 1 " + ex2.ToString());
+                        Console.WriteLine("Error： AddZPlayerDB 1 " + ex2.ToString());
                         return false;
                     }
                     return AddZPlayerDB(player);
@@ -393,9 +393,9 @@ namespace ZHIPlayerManager
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Error("错误：ClearALLZPlayerDB " + ex.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：ClearALLZPlayerDB " + ex.ToString());
-                    Console.WriteLine("错误：ClearALLZPlayerDB " + ex.ToString());
+                    TShock.Log.Error("Error： ClearALLZPlayerDB " + ex.ToString());
+                    TSPlayer.All.SendErrorMessage("Error: ClearALLZPlayerDB " + ex.ToString());
+                    Console.WriteLine("Error： ClearALLZPlayerDB " + ex.ToString());
                     return false;
                 }
             }
@@ -418,9 +418,9 @@ namespace ZHIPlayerManager
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Error("错误：ClearZPlayerDB " + ex.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：ClearZPlayerDB " + ex.ToString());
-                    Console.WriteLine("错误：ClearZPlayerDB " + ex.ToString());
+                    TShock.Log.Error("Error： ClearZPlayerDB " + ex.ToString());
+                    TSPlayer.All.SendErrorMessage("Error： ClearZPlayerDB " + ex.ToString());
+                    Console.WriteLine("Error： ClearZPlayerDB " + ex.ToString());
                     return false;
                 }
             }
@@ -510,9 +510,9 @@ namespace ZHIPlayerManager
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Error("错误：ReadExtraDB " + ex.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：ReadExtraDB " + ex.ToString());
-                    Console.WriteLine("错误：ReadExtraDB " + ex.ToString());
+                    TShock.Log.Error("Error： ReadExtraDB " + ex.ToString());
+                    TSPlayer.All.SendErrorMessage("Error： ReadExtraDB " + ex.ToString());
+                    Console.WriteLine("Error： ReadExtraDB " + ex.ToString());
                     return null;
                 }
             }
@@ -568,9 +568,9 @@ namespace ZHIPlayerManager
                     }
                     catch (Exception ex)
                     {
-                        TShock.Log.Error("错误：WriteExtraDB " + ex.ToString());
-                        TSPlayer.All.SendErrorMessage("错误：WriteExtraDB " + ex.ToString());
-                        Console.WriteLine("错误：WriteExtraDB " + ex.ToString());
+                        TShock.Log.Error("Error： WriteExtraDB " + ex.ToString());
+                        TSPlayer.All.SendErrorMessage("Error： WriteExtraDB " + ex.ToString());
+                        Console.WriteLine("Error： WriteExtraDB " + ex.ToString());
                         return false;
                     }
                 }
@@ -595,9 +595,9 @@ namespace ZHIPlayerManager
                 }
                 catch (Exception ex2)
                 {
-                    TShock.Log.Error("错误：WriteExtraDB 2 " + ex2.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：WriteExtraDB 2 " + ex2.ToString());
-                    Console.WriteLine("错误：WriteExtraDB 2 " + ex2.ToString());
+                    TShock.Log.Error("Error： WriteExtraDB 2 " + ex2.ToString());
+                    TSPlayer.All.SendErrorMessage("Error： WriteExtraDB 2 " + ex2.ToString());
+                    Console.WriteLine("Error： WriteExtraDB 2 " + ex2.ToString());
                     return false;
                 }
             }
@@ -618,9 +618,9 @@ namespace ZHIPlayerManager
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Error("错误：ClearALLZPlayerExtraDB " + ex.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：ClearALLZPlayerExtraDB " + ex.ToString());
-                    Console.WriteLine("错误：ClearALLZPlayerExtraDB " + ex.ToString());
+                    TShock.Log.Error("Error： ClearALLZPlayerExtraDB " + ex.ToString());
+                    TSPlayer.All.SendErrorMessage("Error： ClearALLZPlayerExtraDB " + ex.ToString());
+                    Console.WriteLine("Error： ClearALLZPlayerExtraDB " + ex.ToString());
                     return false;
                 }
             }
@@ -643,9 +643,9 @@ namespace ZHIPlayerManager
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Error("错误：ClearZPlayerExtraDB " + ex.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：ClearZPlayerExtraDB " + ex.ToString());
-                    Console.WriteLine("错误：ClearZPlayerExtraDB " + ex.ToString());
+                    TShock.Log.Error("Error： ClearZPlayerExtraDB " + ex.ToString());
+                    TSPlayer.All.SendErrorMessage("Error： ClearZPlayerExtraDB " + ex.ToString());
+                    Console.WriteLine("Error： ClearZPlayerExtraDB " + ex.ToString());
                     return false;
                 }
             }
@@ -715,9 +715,9 @@ namespace ZHIPlayerManager
                 }
                 catch (Exception ex)
                 {
-                    TShock.Log.Error("错误：ListAllExtraDB " + ex.ToString());
-                    TSPlayer.All.SendErrorMessage("错误：ListAllExtraDB " + ex.ToString());
-                    Console.WriteLine("错误：ListAllExtraDB " + ex.ToString());
+                    TShock.Log.Error("Error： ListAllExtraDB " + ex.ToString());
+                    TSPlayer.All.SendErrorMessage("Error： ListAllExtraDB " + ex.ToString());
+                    Console.WriteLine("Error： ListAllExtraDB " + ex.ToString());
                     return list;
                 }
             }

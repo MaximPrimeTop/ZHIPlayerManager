@@ -11,7 +11,7 @@ namespace ZHIPlayerManager
     {
         public override string Author => "z枳";
 
-        public override string Description => "玩家管理，提供修改玩家的任何信息，允许玩家备份，可以回档等操作";
+        public override string Description => "Player management, provide any information for modifying players, allow players to back up, roll back and other operations";
 
         public override string Name => "ZHIPlayerManager";
 
@@ -55,9 +55,9 @@ namespace ZHIPlayerManager
         /// </summary>
         public static List<StrikeNPC> strikeNPC = new List<StrikeNPC>();
 
-        public readonly string noplayer = "该玩家不存在，请重新输入";
-        public readonly string manyplayer = "该玩家不唯一，请重新输入";
-        public readonly string offlineplayer = "该玩家不在线，正在查询离线数据";
+        public readonly string noplayer = "The player does not exist, please re-enter";
+        public readonly string manyplayer = "This player is not unique, please re-enter";
+        public readonly string offlineplayer = "The player is not online and is querying offline data";
 
         public static ZhipmConfig config = new ZhipmConfig();
 
@@ -106,96 +106,96 @@ namespace ZHIPlayerManager
             #region 指令
             Commands.ChatCommands.Add(new Command("", Help, "zhelp")
             {
-                HelpText = "输入 /zhelp  来查看指令帮助"
+                HelpText = "Type /zhelp to view command help"
             });
             Commands.ChatCommands.Add(new Command("zhipm.save", MySSCSave, "zsave")
             {
-                HelpText = "输入 /zsave  来备份自己的人物存档"
+                HelpText = "Type /zsave to back up your character save"
             });
             Commands.ChatCommands.Add(new Command("zhipm.save", MySSCSaveAuto, "zsaveauto")
             {
-                HelpText = "输入 /zsaveauto [minute]  来每隔 minute 分钟自动备份自己的人物存档，当 minute 为 0 时关闭该功能"
+                HelpText = "Type /zsaveauto [minute] to automatically back up your own character archives every minute, and turn off this function when the minute is 0"
             });
             Commands.ChatCommands.Add(new Command("zhipm.save", ViewMySSCSave, "zvisa")
             {
-                HelpText = "输入 /zvisa [num] 来查看自己的第几个人物备份"
+                HelpText = "Type /zvisa [num] to view your first character backup"
             });
             Commands.ChatCommands.Add(new Command("zhipm.back", MySSCBack, "zback")
             {
-                HelpText = "输入 /zback [name]  来读取该玩家的人物存档\n输入 /zback [name] [num]  来读取该玩家的第几个人物存档"
+                HelpText = "Type /zback [name] to read the player's character file\nType /zback [name] [num] to read the number of the player's character file"
             });
             Commands.ChatCommands.Add(new Command("zhipm.clone", SSCClone, "zclone")
             {
-                HelpText = "输入 /zclone [name1] [name2]  将玩家1的人物数据复制给玩家2\n输入 /zclone [name]  将该玩家的人物数据复制给自己"
+                HelpText = "Type /zclone [name1] [name2] to copy player 1's character data to player 2\nType /zclone [name] to copy that player's character data to yourself"
             });
             Commands.ChatCommands.Add(new Command("zhipm.modify", SSCModify, "zmodify")
             {
-                HelpText = "输入 /zmodify help  查看修改玩家数据的指令帮助"
+                HelpText = "Type /zmodify help to view the command help for modifying player data"
             });
             Commands.ChatCommands.Add(new Command("zhipm.out", ZhiExportPlayer, "zout")
             {
-                HelpText = "输入 /zout [name]  来导出该玩家的人物存档\n输入 /zout all  来导出所有人物的存档"
+                HelpText = "Type /zout [name] to export that player's character saves\nType /zout all to export all character saves"
             });
             Commands.ChatCommands.Add(new Command("zhipm.sort", ZhiSortPlayer, "zsort")
             {
-                HelpText = "输入 /zsort help  来查看排序系列指令帮助"
+                HelpText = "Type /zsort help to see help for the sort series commands"
             });
             Commands.ChatCommands.Add(new Command("", HideTips, "zhide")
             {
-                HelpText = "输入 /zhide kill  来取消 kill + 1 的显示，再次使用启用显示\n输入 /zhide point  来取消 + 1 $ 的显示，再次使用启用显示"
+                HelpText = "Type /zhide kill to cancel kill +1 display, use enable display again\ntype /zhide point to cancel +1 $ display, use enable display again"
             });
 
             Commands.ChatCommands.Add(new Command("zhipm.clear", Clear, "zclear")
             {
-                HelpText = "输入 /zclear useless  来清理世界的掉落物品，非城镇或BossNPC，和无用射弹\n输入 /zclear buff [name]  来清理该玩家的所有Buff\n输入 /zclear buff all  来清理所有玩家所有Buff"
+                HelpText = "Type /zclear useless to clear the world of dropped items, non-town or boss NPCs, and useless projectiles\nType /zclear buff [name] to clear all buffs from that player\nType /zclear buff all to clear all buffs from all players"
             });
 
 
             Commands.ChatCommands.Add(new Command("zhipm.freeze", ZFreeze, "zfre")
             {
-                HelpText = "输入 /zfre [name]  来冻结该玩家"
+                HelpText = "Type /zfre [name] to freeze the player"
             });
             Commands.ChatCommands.Add(new Command("zhipm.freeze", ZUnFreeze, "zunfre")
             {
-                HelpText = "输入 /zunfre [name]  来解冻该玩家\n输入 /zunfre all  来解冻所有玩家"
+                HelpText = "Type /zunfre [name] to unfreeze that player\nType /zunfre all to unfreeze all players"
             });
 
 
             Commands.ChatCommands.Add(new Command("zhipm.reset", ZResetPlayerDB, "zresetdb")
             {
-                HelpText = "输入 /zresetdb [name]  来清理该玩家的备份数据\n输入 /zresetdb all  来清理所有玩家的备份数据"
+                HelpText = "Type /zresetdb [name] to clear the backup data for this player\nType /zresetdb all to clear the backup data for all players"
             });
             Commands.ChatCommands.Add(new Command("zhipm.reset", ZResetPlayerEX, "zresetex")
             {
-                HelpText = "输入 /zresetex [name]  来清理该玩家的额外数据\n输入 /zresetex all  来清理所有玩家的额外数据"
+                HelpText = "Type /zresetex [name] to clear extra data for that player\nType /zresetex all to clear extra data for all players"
             });
             Commands.ChatCommands.Add(new Command("zhipm.reset", ZResetPlayer, "zreset")
             {
-                HelpText = "输入 /zreset [name]  来清理该玩家的人物数据\n输入 /zreset all  来清理所有玩家的人物数据"
+                HelpText = "Type /zreset [name] to clear character data for that player\nType /zreset all to clear character data for all players"
             });
             Commands.ChatCommands.Add(new Command("zhipm.reset", ZResetPlayerAll, "zresetallplayers")
             {
-                HelpText = "输入 /zresetallplayers  来清理所有玩家的所有数据"
+                HelpText = "Type /zresetallplayers to clear all data for all players"
             });
 
 
             Commands.ChatCommands.Add(new Command("zhipm.vi", ViewInvent, "vi")
             {
-                HelpText = "输入 /vi [name]  来查看该玩家的库存"
+                HelpText = "Type /vi [name] to view the player's inventory"
             });
             Commands.ChatCommands.Add(new Command("zhipm.vi", ViewInventDisorder, "vid")
             {
-                HelpText = "输入 /vid [name]  来查看该玩家的库存，不分类"
+                HelpText = "Type /vid [name] to see the player's inventory, not categorized"
             });
             Commands.ChatCommands.Add(new Command("zhipm.vs", ViewState, "vs")
             {
-                HelpText = "输入 /vs [name]  来查看该玩家的状态"
+                HelpText = "Type /vs [name] to see the player's status"
             });
 
 
             Commands.ChatCommands.Add(new Command("zhipm.ban", SuperBan, "zban")
             {
-                HelpText = "输入 /zban add [name] [reason]  来封禁无论是否在线的玩家，reason 可不填"
+                HelpText = "Type /zban add [name] [reason] to ban players whether they are online or not, reason can be left blank"
             });
 
             #endregion

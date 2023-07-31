@@ -1,254 +1,253 @@
 # ZHIPlayerManager
-多功能的管理玩家插件
+Versatile management player plugin
 
-## 功能介绍：
+## Features:
 
-### 1. 查看玩家库存和状态
-查背包的功能，能查看1.44更新的额外背包栏，无论是否离线。查状态的功能，目前能显示生命值，魔力值，钓鱼任务数目，永久增益，Buff数目，钱币数目，额外数据还有：在线时长，击杀生物数，击杀Boss情况，击杀罕见生物数，死亡次数等等，支持离线
+### 1. View player inventory and status
+Check the function of the backpack, you can check 1.44 Updated extra backpack slot, offline or not.The function of checking the status, currently can display the HP, Mana, number of finished fishing quests, permanent buffs，the number of buffs, the number of coins, additional data and： Online time, the number of creatures killed, the situation of killing the Boss, the number of rare creatures killed, the number of deaths, etc., support offline
 
-### 2. 修改玩家信息
-允许修改玩家几乎任何信息，包括，生命、生命上限、魔力、魔力上限、渔夫任务数、火把神激活、恶魔心激活、工匠面包、生命水晶、埃癸斯果、奥术水晶、银河珍珠、粘性蠕虫、珍馐、超级矿车的修改，支持修改在线和不在线玩家
-
-### 3. 允许玩家备份和自动备份
-玩家有时候会在服务器里丢失存档，尤其在游戏卡顿的时候，该插件允许玩家自己手动备份存档或自动备份，最多五个存档栏超过五个最旧的会自动删除（默认5个，可以调）， **回档权限不要给玩家** ，如果这样玩家就可以自由刷东西，建议让管理持有回档权限， **数据记录在 tshock.sqlite 的 Zhipm_PlayerBackUp 表中** 。无论玩家是否在线、玩家的默认装备栏和备份的默认装备栏是否一致都能成功，下面的复制人物存档指令也是一样，相当便捷
-
-### 4. 清理玩家数据
-该插件有多种清理类型的指令，详情输入`/zreset help`查看。而在服务器开荒时输入指令`/zresetallplayers`则可以直接清理所有玩家的所有数据
-
-### 5. 复制玩家存档
-你可以随时把一个人的存档复制给另一个人，无论他们是否在线
-
-### 6. 记录玩家游玩时间
-本插件会记录玩家游玩的时间，不会随着关服而消失， **数据记录在 tshock.sqlite 的 Zhipm_PlayerExtra 表中**，可以选择是否启用
-
-### 7. 数据排行榜
-目前有游玩时间排榜，总钱数排榜，完成任务鱼数排榜，击杀生物数排行榜，击杀稀有生物数排行榜，击杀Boss数排行榜，在 `/zsort` 系列指令中查看
-
-### 8. 更友好的ban指令
-此ban指令 `/zban` 支持离线ban，同时封禁 acc，ip，uuid，对名字支持模糊搜索，但只会在找到唯一一个玩家才会ban掉，若模糊搜索找到不止一个玩家，为防止误ban，该指令会让你重新输入
-
-### 9. 允许导出玩家人物存档
-`/zout`系列指令允许导出人物数据，并按照当前地图名称为文件夹打包，除了人物数据缺失会导致无法导出，其他都能导出
-
-### 10. 冻结玩家
-`/zfre name`指令能直接冻结玩家，从acc, ip, uuid 三个数据进行比对，若符合则直接冻结。可以冻结离线玩家，当他们再次进入服务器时起效。注意，此功能在服务器重启后失效，仅用于临时冻结，若要长期请使用`/zban`
-
-### 11. 清理无效服务器数据
-这个功能打算以后从这个插件里移除，因为有点跑题。使用`/zclear`指令将在20秒后清理世界内所有非Boss非城镇NPC的无用NPC，清理所有掉落在地上的物品，清理所有射弹，减轻服务器内无效数据。
-
-### 12. 统计玩家击杀Boss的伤害输出
-在玩家杀死Boss该插件能统计各个玩家的输出情况并广播输出，玩家可自行观看自己的战斗贡献，甚至可以自己设置统计哪些生物，比如蓝色史莱姆
+### 2. Modify player information
+Allows modification of almost any player information，Including HP, Max HP, Mana, Max Mana, number of fishering tasks, torch god, demon heart activation, Artisan Loaf, life crystal, Aegis Fruit, Arcane Crystal, galaxy pearl, Gummy worm, delicacy, super minecart modification, support modification of online and offline players
 
 
-## 指令
-- 帮助系列，快捷查看这个插件的所有指令
-- 权限1:【无，任何人都能使用】
-- 指令1： `/zhelp`
-- 功能1： 查看该插件下的所有指令帮助
+### 3. Allow player backups and auto-backups
+Players sometimes lose save files in the server,Especially when the game freezes,This plugin allows players to manually back up their archives or automatically back up,Up to five archive columns, more than five oldest will be automatically deleted (default 5, can be adjusted)， **Do not give the player permission to rollback**, If so players can freely brush things,It is recommended that the administrator hold the rollback permission， **The data is recorded in the Zhipm_PlayerBackUp table of tshock.sqlite**. Regardless of whether the player is online or not, whether the player's default equipment bar is consistent with the backup default equipment bar, it can be successful.The same is true for the copy character archive command below, which is quite convenient
+
+### 4. Clean up player data
+The plug-in has multiple types of clearing instructions, enter `/zreset help` for details. And enter the command `/zresetallplayers` when opening up wasteland on the server, you can directly clear all the data of all players
+
+### 5. Copy player save
+You can copy one person's save file to another at any time, whether they are online or not
+
+### 6. Record player play time
+This plug-in will record the player's playing time and will not disappear with the closing of the server. **The data is recorded in the Zhipm_PlayerExtra table of tshock.sqlite**, and you can choose whether to enable it
+
+### 7. Data Leaderboard
+Currently there are rankings for playing time, total money, number of completed missions, number of creatures killed, number of rare creatures killed, and bosses killed. You can view them in the `/zsort` series of commands
+
+### 8. More friendly ban command
+This ban command `/zban` supports offline ban, and bans acc, ip, uuid at the same time. It supports fuzzy search for names, but it will only ban when it finds only one player.
+
+### 9. Allows player character saves to be exported
+The `/zout` series commands allow character data to be exported, and are packaged in folders according to the current map name, except that the missing character data will cause the export to fail, and others can be exported
+
+### 10. freeze player
+The `/zfre name` command can directly freeze the player, compare the three data of acc, ip, and uuid, and freeze it directly if they match. Can freeze offline players when they re-enter the server. Note that this function will be invalid after the server is restarted, it is only used for temporary freezing, if you want to use `/zban` for a long time
+
+### 11. Clean invalid server data
+This feature is going to be removed from this plugin in the future, because it is a bit off topic. Using the `/zclear` command will clear all useless NPCs in the world that are not Boss and non-town NPCs after 20 seconds, clean up all items that fall on the ground, clean up all projectiles, and reduce invalid data in the server.
+
+### 12. Bossfight player stats
+When the player kills the Boss, the plugin can count the damage output of each player and broadcast the output. Players can see their contributions. Can be set to include damage dealt to mobs
+
+## instruction
+- Help series, quickly view all instructions of the plugin
+- Permission 1: [None, anyone can use]
+- Command 1: `/zhelp`
+- Function 1: View all command help under this plugin
 -
-- 保存系列，用于保存存档备份，查看备份
-- 权限2： `zhipm.save`
-- 指令2-1： `/zsave`
-- 功能2-1： 备份自己的人物存档
-- 指令2-2：`/zvisa [num]`
-- 功能2-2： 查看自己备份的库存，num 范围 1 ~ 5（默认5，可改）  **num 可不填** ，越小备份越新，默认不输入 num 时自动查看最新的备份 1
-- 指令2-3：`/zvisa [name] [num]`
-- 功能2-3： 查看某人备份的库存，num 范围 1 ~ 5（默认5，可改）  **num 可不填** ，越小备份越新，默认不输入 num 时自动查看最新的备份 1
-- 指令2-4： `/zsaveauto [num]`
-- 功能2-4： 允许用户自动备份他自己，数字填每隔 num 分钟自动备份一次，填 0 时关闭此功能
+- save series, for saving archive backups, for viewing backups
+- Permission 2: `zhipm.save`
+- Command 2-1: `/zsave`
+- Function 2-1: Backup your character archive
+- Command 2-2: `/zvisa [num]`
+- Function 2-2: View your own backup inventory, num ranges from 1 to 5 (default 5, can be changed) **num can be left blank**, the smaller the backup, the newer, the default is to automatically view the latest backup when num is not entered 1
+- Command 2-3: `/zvisa [name] [num]`
+- Function 2-3: View someone’s backup inventory, num ranges from 1 to 5 (default 5, can be changed) **num can be left blank**, the smaller the backup, the newer, the default is to automatically view the latest backup when num is not entered 1
+- Commands 2-4: `/zsaveauto [num]`
+- Function 2-4: Allow the user to automatically back up himself, fill in the number to automatically back up every num minutes, fill in 0 to disable this function
 -
-- 回档系列，单独分出来权限避免玩家自由刷物品
-- 权限3： `zhipm.back`
-- 指令3： `/zback [name] [num]`
-- 功能3： 让玩家回档到 num 号备份， **num 可不填** ，不填时默认回档到最新存档 1，这个指令不要给普通玩家，否则他们可以用备份和回档刷物品，仅是为了方便管理使用而设计的
+- Rollback series, separate permissions to prevent players from freely swiping items
+- Permission 3: `zhipm.back`
+- Command 3: `/zback [name] [num]`
+- Function 3: Let the player go back to the num number backup, **num can be left blank**, if not filled in, it will go back to the latest save 1 by default, this command should not be given to ordinary players, otherwise they can use the backup and back up to brush items, it is only designed for the convenience of management and use
 -
-- 复制系列，克隆任何一个玩家的存档
-- 权限4： `zhipm.clone`
-- 指令4： `/zclone [name1] [name2]`
-- 功能4： 将 name1 的人物数据复制给 name2 玩家， **name2 可不填** ，不填时默认将 name1 玩家的数据复制给本人
+- Duplicate series, clone any player's save
+- Permission 4: `zhipm.clone`
+- Command 4: `/zclone [name1] [name2]`
+- Function 4: Copy the character data of name1 to player name2, **name2 can be left blank**, if not filled, the data of player name1 will be copied to me by default
 -
-- 修改系列，简单的修改一些属性
-- 权限5： `zhipm.modify`
-- 指令5-1： `/zmodify help`
-- 功能5-1： 查看 zmodify 系列指令帮助，zmodify系列指令均能修改在线或离线的玩家
-- 指令5-2： `/zmodify [name] life [num]`
-- 功能5-2： 修改玩家的生命值为num
-- 指令5-3： `/zmodify [name] lifemax [num]`
-- 功能5-3： 修改玩家的生命上限为num
-- 指令5-4： `/zmodify [name] mana [num]`
-- 功能5-4： 修改玩家的魔力值为num
-- 指令5-5： `/zmodify [name] manamax [num]`
-- 功能5-5： 修改玩家的最大魔力值为num
-- 指令5-6： `/zmodify [name] fish [num]`
-- 功能5-6： 修改玩家的钓鱼完成的任务数为num
-- 指令5-7： `/zmodify [name] torch [0或1]`
-- 功能5-7： 关闭或开启玩家的火把神或增益
-- 指令5-8： `/zmodify [name] demmon [0或1]`
-- 功能5-8： 关闭或开启玩家的恶魔心或增益
-- 指令5-9： `/zmodify [name] bread [0或1]`
-- 功能5-9： 关闭或开启玩家的或工匠面包增益
-- 指令5-10： `/zmodify [name] heart [0或1]`
-- 功能5-10： 关闭或开启玩家的或生命水晶（埃癸斯水晶）增益
-- 指令5-11： `/zmodify [name] fruit [0或1]`
-- 功能5-11： 关闭或开启玩家的或埃癸斯果增益
-- 指令5-12： `/zmodify [name] star [0或1]`
-- 功能5-12： 关闭或开启玩家的或奥术水晶增益
-- 指令5-13： `/zmodify [name] pearl [0或1]`
-- 功能5-13： 关闭或开启玩家的或银河珍珠增益
-- 指令5-14： `/zmodify [name] worm [0或1]`
-- 功能5-14： 关闭或开启玩家的或粘性蠕虫增益
-- 指令5-15： `/zmodify [name] ambrosia [0或1]`
-- 功能5-15： 关闭或开启玩家的或珍馐增益
-- 指令5-16： `/zmodify [name] cart [0或1]`
-- 功能5-16： 关闭或开启玩家的或超级矿车增益
-- 指令5-17： `/zmodify [name] all [0或1]`
-- 功能5-17： 关闭或开启玩家的或所有增益
-- 指令5-18： `/zmodify [name] point [num]`
-- 功能5-18： 修改玩家点数为 num
+- Modify the series, simply modify some attributes
+- Permission 5: `zhipm.modify`
+- Command 5-1: `/zmodify help`
+- Function 5-1: View the help of zmodify series commands, zmodify series commands can modify online or offline players
+- Command 5-2: `/zmodify [name] life [num]`
+- Function 5-2: Modify the player's life value to num
+- Command 5-3: `/zmodify [name] lifemax [num]`
+- Function 5-3: Modify the player's life limit to num
+- Command 5-4: `/zmodify [name] mana [num]`
+- Function 5-4: Modify the player's mana value to num
+- Command 5-5: `/zmodify [name] manamax [num]`
+- Function 5-5: Modify the player's maximum mana value to num
+- Commands 5-6: `/zmodify [name] fish [num]`
+- Function 5-6: Modify the number of tasks completed by the player's fishing to num
+- Instructions 5-7: `/zmodify [name] torch [0 or 1]`
+- Functions 5-7: Turn off or on the player's torch god or buff
+- Commands 5-8: `/zmodify [name] demmon [0 or 1]`
+- Function 5-8: Turn off or on the player's demon heart or buff
+- Commands 5-9: `/zmodify [name] bread [0 or 1]`
+- Features 5-9: Turn off or on player's or artisan bread buffs
+- Commands 5-10: `/zmodify [name] heart [0 or 1]`
+- Functions 5-10: Turn off or on player's or Life Crystal (Aegis Crystal) buffs
+- Commands 5-11: `/zmodify [name] fruit [0 or 1]`
+- Functions 5-11: Turn off or on player's or Aegis fruit buffs
+- Commands 5-12: `/zmodify [name] star [0 or 1]`
+- Functions 5-12: Turn off or on player's or arcane crystal buffs
+- Commands 5-13: `/zmodify [name] pearl [0 or 1]`
+- Function 5-13: Turn off or on player's or Galactic Pearl buffs
+- Commands 5-14: `/zmodify [name] worm [0 or 1]`
+- Function 5-14: Turn player's or sticky worm buffs off or on
+- Commands 5-15: `/zmodify [name] ambrosia [0 or 1]`
+- Function 5-15: Turn off or on the player's or delicacy buff
+- Commands 5-16: `/zmodify [name] cart [0 or 1]`
+- Function 5-16: Turn off or on player's or super minecart buffs
+- Commands 5-17: `/zmodify [name] all [0 or 1]`
+- Function 5-17: Turn off or on a player's or all buffs
+- Command 5-18: `/zmodify [name] point [num]`
+- Function 5-18: Modify player points to num
 -
-- 冻结系列，临时冻结不听话的玩家
-- 权限6： `zhipm.freeze`
-- 指令6-1： `/zfre [name]`
-- 功能6-1： 冻结这个玩家，从 name,uuid,ip 三个数据进行比对冻结，即使玩家离线也能处理，但在服务器重启后失效
-- 指令6-2： `/zunfre [name]`
-- 功能6-2： 解冻这个玩家
-- 指令6-3： `/zunfre all`
-- 功能6-3： 解冻所有玩家
+- Freeze series, temporarily freeze disobedient players
+- Permission 6: `zhipm.freeze`
+- Command 6-1: `/zfre [name]`
+- Function 6-1: Freeze the player, compare and freeze the three data from name, uuid, ip, it can be processed even if the player is offline, but it will fail after the server restarts
+- Command 6-2: `/zunfre [name]`
+- Function 6-2: Unfreeze this player
+- Command 6-3: `/zunfre all`
+- Function 6-3: Unfreeze all players
 -
-- 重置系列，危险的指令，常用于开荒一键清理数据库或惩罚玩家
-- 权限7： `zhipm.reset`
-- 指令7-1： `/zresetdb [name]`
-- 功能7-1： 重置这个玩家的备份数据，删除备份数据库中的数据
-- 指令7-2： `/zresetdb all`
-- 功能7-2： 重置所有玩家的备份数据
-- 指令7-3： `/zresetex [name]`
-- 功能7-3： 重置这个玩家的额外数据，删除额外数据库中的数据
-- 指令7-4： `/zresetex all`
-- 功能7-4： 重置所有玩家的额外数据
-- 指令7-5： `/zreset [name]`
-- 功能7-5： 重置这个玩家的人物数据，按照 tshock 的 ssconfig.json 的配置进行重置
-- 指令7-6： `/zreset all`
-- 功能7-6： 重置所有玩家的人物数据，按照 tshock 的 ssconfig.json 的配置进行重置
-- 指令7-7： `/zresetallplayers`
-- 功能7-7： 重置所有玩家的所有数据，适合新开荒时使用， **这个指令会删掉原版 tsCharacter 表和插件 Zhipm_PlayerBackUp 和 Zhipm_PlayerExtra 表中的所有数据！** 
+- Reset series, dangerous instructions, often used to clean up the database with one click or punish players
+- Permission 7: `zhipm.reset`
+- Command 7-1: `/zresetdb [name]`
+- Function 7-1: Reset the backup data of this player, delete the data in the backup database
+- Command 7-2: `/zresetdb all`
+- Function 7-2: Reset all players' backup data
+- Command 7-3: `/zresetex [name]`
+- Function 7-3: Reset extra data for this player, delete data in extra database
+- Command 7-4: `/zresetex all`
+- Function 7-4: Reset extra data for all players
+- Command 7-5: `/zreset [name]`
+- Function 7-5: Reset the character data of this player, reset according to the configuration of tshock's ssconfig.json
+- Command 7-6: `/zreset all`
+- Function 7-6: Reset the character data of all players, reset according to the configuration of tshock's ssconfig.json
+- Command 7-7: `/zresetallplayers`
+- Function 7-7: Reset all data of all players, suitable for new land reclamation, **This command will delete all data in the original tsCharacter table and plug-in Zhipm_PlayerBackUp and Zhipm_PlayerExtra tables! **
 -
-- 查背包系列，以前的查背包插件整合在一起了，所以没有 z 开头
-- 权限8： `zhipm.vi`
-- 指令8-1： `/vi [name]`
-- 功能8-1： 查询这个玩家的所有库存，按顺序排列，根据情况返回图标或文本
-- 指令8-2： `/vid [name]`
-- 功能8-2： 查询这个玩家的所有库存，不按顺序排列，根据情况返回图标或文本
+- Check backpack series, the previous check backpack plug-in is integrated, so there is no z at the beginning
+- Permission 8: `zhipm.vi`
+- Command 8-1: `/vi [name]`
+- Function 8-1: Query all inventories of this player, arrange them in order, and return icon or text according to the situation
+- Command 8-2: `/vid [name]`
+- Function 8-2: Query all inventories of this player, not in order, and return icon or text according to the situation
 -
-- 查状态信息系列，同上
-- 权限9： `zhipm.vs`
-- 指令9-1： `/vs [name]`
-- 功能9-1： 查询这个玩家的所有状态数据，包括生命值，魔力值，钱币数，完成任务鱼数，在线时长，击杀生物数、boss数、罕见生物数，永久增益和buff增益
-- 指令9-2： `/vs me`
-- 功能9-2： 查询自己
+- Check status information series, same as above
+- Permission 9: `zhipm.vs`
+- Command 9-1: `/vs [name]`
+- Function 9-1: Query all status data of this player, including life value, mana value, number of coins, number of completed mission fish, online time, number of creatures killed, number of bosses, number of rare creatures, permanent gain and buff gain
+- Command 9-2: `/vs me`
+- Function 9-2: Query self
 -
-- 排榜系列，对搜集的信息排榜，娱乐也可以监督，比如用钱币排榜直接找到刷钱作弊玩家
-- 权限10： `zhipm.sort`
-- 指令10-1： `/zsort help`
-- 功能10-1： 查看 zsort 系列指令的帮助
-- 指令10-2： `/zsort time [num/all]`
-- 功能10-2： 对当前服务器内所有玩家的在线时间进行降序排列， **不填 num 默认只陈列前10名** ，填 num 表示陈列前 num 名，填 all 表示陈列所有排名
-- 指令10-3： `/zsort coin [num/all]`
-- 功能10-3： 对当前服务器内所有玩家的钱币数进行降序排列， **不填 num 默认只陈列前10名** ，填 num 表示陈列前 num 名，填 all 表示陈列所有排名
-- 指令10-4： `/zsort fish [num/all]`
-- 功能10-4： 对当前服务器内所有玩家的钓鱼任务完成数进行降序排列， **不填 num 默认只陈列前10名** ，填 num 表示陈列前 num 名，填 all 表示陈列所有排名
-- 指令10-5： `/zsort boss [num/all]`
-- 功能10-5： 对当前服务器内所有玩家的击杀Boss数进行降序排列， **不填 num 默认只陈列前10名** ，填 num 表示陈列前 num 名，填 all 表示陈列所有排名
-- 指令10-6： `/zsort kill [num/all]`
-- 功能10-6： 对当前服务器内所有玩家的击杀总生物数进行降序排列， **不填 num 默认只陈列前10名** ，填 num 表示陈列前 num 名，填 all 表示陈列所有排名
-- 指令10-7： `/zsort rarenpc [num/all]`
-- 功能10-7： 对当前服务器内所有玩家的击杀罕见生物数进行降序排列， **不填 num 默认只陈列前10名** ，填 num 表示陈列前 num 名，填 all 表示陈列所有排名
-- 指令10-8： `/zsort point [num/all]`
-- 功能10-8： 对当前服务器内所有玩家的点数进行降序排列， **不填 num 默认只陈列前10名** ，填 num 表示陈列前 num 名，填 all 表示陈列所有排名
-- 指令10-9： `/zsort death [num/all]`
-- 功能10-9： 对当前服务器内所有玩家的死亡次数进行降序排列， **不填 num 默认只陈列前10名** ，填 num 表示陈列前 num 名，填 all 表示陈列所有排名
-- 指令10-10： `/zsort clumsy [num/all]`
-- 功能10-10： 对当前服务器内所有玩家的菜鸡值降序排列， **不填 num 默认只陈列前10名** ，填 num 表示陈列前 num 名，填 all 表示陈列所有排名，**该功能仅供娱乐**  菜鸡值 = 死亡次数 * 1000 / 在线时长，菜鸡值不计入数据库
+- Ranking series, the collected information ranking, entertainment can also be supervised, such as using the coin ranking to directly find cheating players
+- Permission 10: `zhipm.sort`
+- Command 10-1: `/zsort help`
+- Function 10-1: Check the help of zsort commands
+- Command 10-2: `/zsort time [num/all]`
+- Function 10-2: Sort the online time of all players in the current server in descending order, **If you don’t fill in num, only the top 10 will be displayed by default**, fill in num to display the top num players, fill in all to display all rankings
+- Command 10-3: `/zsort coin [num/all]`
+- Function 10-3: Arrange the coins of all players in the current server in descending order, **If you don’t fill in num, only the top 10 will be displayed by default**, fill in num to display the top num names, fill in all to display all rankings
+- Command 10-4: `/zsort fish [num/all]`
+- Function 10-4: Arrange the number of fishing tasks completed by all players in the current server in descending order. **If you do not fill in num, only the top 10 will be displayed by default**. Fill in num to display the top num names, and fill in all to display all rankings
+- Command 10-5: `/zsort boss [num/all]`
+- Function 10-5: Arrange the number of bosses killed by all players in the current server in descending order, **If you don’t fill in num, only the top 10 will be displayed by default**, fill in num to display the top num names, fill in all to display all rankings- 指令10-6： `/zsort kill [num/all]`
+- Command 10-6: /zsort kill [num/all]
+- Function 10-6: Arrange the total number of creatures killed by all players in the current server in descending order. If you do not fill in num, only the top 10 will be displayed by default. Fill in num to display the top num names, and fill in all to display all rankings
+- Command 10-7: `/zsort rarenpc [num/all]`
+- Function 10-7: Arrange the number of rare creatures killed by all players in the current server in descending order, **If you don’t fill in num, only the top 10 will be displayed by default**, fill in num to display the top num names, fill in all to display all rankings
+- Command 10-8: `/zsort point [num/all]`
+- Function 10-8: Arrange the points of all players in the current server in descending order, **If you don’t fill in num, only the top 10 will be displayed by default**, fill in num to display the top num players, fill in all to display all rankings
+- Command 10-9: `/zsort death [num/all]`
+- Function 10-9: Arrange the number of deaths of all players in the current server in descending order, **If you don’t fill in num, only the top 10 will be displayed by default**, fill in num to display the top num players, fill in all to display all rankings
+- Commands 10-10: `/zsort clumsy [num/all]`
+- Function 10-10: Arrange the game chicken values ​​​​of all players in the current server in descending order. **If you don’t fill in num, only the top 10 will be displayed by default**. Fill in num to display the top num names, and fill in all to display all rankings. **This function is only for entertainment**.
 -
-- 导出数据系列，满足一些玩家想要游戏存档的需求
-- 权限11： `zhipm.out`
-- 指令11： `/zout [name/all]`
-- 功能11： 导出这个叫 name 的人物的存档，填 all 则导出所有人物的存档
+- Export data series to meet the needs of some players who want game archives
+- Permission 11: `zhipm.out`
+- Command 11: `/zout [name/all]`
+- Function 11: Export the archive of the character named name, fill in all to export the archive of all characters
 -
-- 超级ban系列
-- 权限12： `zhipm.ban`
-- 指令12： `/zban add [name] [原因，可不填]`
-- 功能12： 优化过的ban指令，能办掉离线的用户，支持模糊搜索，当搜索结果不唯一时 ban 失败，避免误封的情况。此指令会同时封禁acc, ip, uuid并在指令成功后计入日志并发出广播，若玩家名字带有空格，可以用英文引号括起来如 `/zban add "超级 熊  孩子" 炸图`
+- Super ban series
+- Permission 12: `zhipm.ban`
+- Command 12: `/zban add [name] [reason, optional]`
+- Function 12: The optimized ban command can remove offline users and support fuzzy search. When the search result is not unique, the ban will fail to avoid false bans. This command will ban acc, ip, uuid at the same time and record it into the log and send out a broadcast after the command is successful. If the player name has a space, you can use English quotation marks to enclose it, such as `/zban add "Super Bear Kid" fried picture`
 -
-- 玩家自己的游戏体验设置
-- 权限13：【无，任何人都能使用】
-- 指令13： `/zhide kill 或 point`
-- 功能13： 用于玩家隐藏击杀生物时 kill + 1 的白色悬浮字体 或 + num $ 的粉色点数悬浮字体，再次使用此指令取消隐藏
+- Player's own game experience settings
+- Permission 13: [None, anyone can use]
+- Command 13: `/zhide kill or point`
+- Function 13: It is used to hide the white floating font of kill + 1 or the pink floating font of + num $ when the player kills the creature, use this command again to unhide
 -
-- 一个打算从这个插件移除的功能，感觉放在这里不合适但我暂时不想写别的插件
-- 权限14： `zhipm.clear`
-- 指令14-1： `/zclear useless`
-- 功能14-1： 清理世界的掉落物品，非城镇NPC和非BossNPC，和无用射弹
-- 指令14-2： `/zclear buff [name]`
-- 功能14-2： 清除某个玩家身上的所有buff
+- A function that is going to be removed from this plugin, it feels inappropriate to put it here but I don't want to write other plugins for now
+- Permission 14: `zhipm.clear`
+- Directive 14-1: `/zclear useless`
+- Feature 14-1: Cleans up the world of dropped items, non-town NPCs and non-Boss NPCs, and useless projectiles
+- Command 14-2: `/zclear buff [name]`
+- Function 14-2: Clear all buffs from a player
 
 
-## 配置文件 ZhiPlayerManager.json
+## Configuration file ZhiPlayerManager.json
 ```
 {
-  "是否启用在线时长统计": true,		//启用这个功能将记录玩家在线时长
+  "Whether to enable online time statistics": true,		//Enabling this feature will record the player's online time
   "是否启用死亡次数统计": true        //同上
-  "是否启用击杀NPC统计": true,		//同上
-  "是否启用点数统计": false,			//击杀怪物获得点数，目前处于测试，默认关闭，需 "是否启用击杀NPC统计" 开启
-  "默认击杀字体是否对玩家显示": true,	//是否启用 kill + 1 的怪物击杀字体，需 "是否启用击杀NPC统计" 开启
-  "默认点数字体是否对玩家显示": true,	//对应点数的字体，目前处于测试，默认关闭，需 "是否启用点数统计" 开启
-  "是否启用击杀Boss伤害排行榜": true, //杀死Boss时统计并发送玩家的伤害贡献，需 "是否启用击杀NPC统计" 开启
-  "是否启用玩家自动备份": false,		//自动备份，区别于手动备份
-  "默认自动备份的时间_单位分钟_若为0代表关闭": 20,  //每隔 20 分钟对服务器内在线玩家进行备份
-  "每个玩家最多几个备份存档": 5,      //每个玩家最多几个备份存档
-  "哪些生物也包含进击杀伤害排行榜":[]  //与击杀boss伤害排行榜对应的击杀生物伤害排行榜，可以在这里填入生物ID，需 "是否启用击杀NPC统计" 开启
+  "Whether to enable kill NPC statistics": true,		//ditto
+  "Whether to enable point statistics": false,			//Kill monsters to get points, currently in testing, the default is off, need "whether to enable kill NPC statistics" to open
+  "Whether the default kill font is shown to players": true,	//Whether to enable kill + 1 monster kill font, need "Enable kill NPC statistics" to open
+  "Whether the default pip font is displayed to the player": true,	//The font corresponding to the point is currently in testing, and it is disabled by default. It needs to be enabled in "Enable point statistics"
+  "Whether to enable the kill boss damage leaderboard": true, 	//Count and send the player's damage contribution when killing the Boss, need "Enable kill NPC statistics" to open
+  "Whether to enable automatic player backup": false,		//Automatic backup, different from manual backup
+  "The default automatic backup time_in minutes_if it is 0, it means off": 20,  //Backup online players in the server every 20 minutes
+  "The maximum number of backup files for each player": 5, 	//The maximum number of backup files for each player
+  "Which creatures are also included in the kill damage ranking list":[] 	//The killing creature damage ranking list corresponding to the killing boss damage ranking list, you can fill in the creature ID here, and you need to enable "whether to enable kill NPC statistics"
 }
 ```
 
+## other
+-  **Do not give the backup permission and rollback permission to players at the same time**, so they can freely farm items
+- The plug-in is essentially a collection of all-round management of players. It is large in size because commands account for a large proportion and does not take up too much server computing power.
+- The plugin adds two tables in tshock.sqlite, Zhipm_PlayerBackUp and Zhipm_PlayerExtra. The former table is a backup of the tsCharater table. The primary key is AccAndSlot, which is a string of xxx-x composed of the player account ID and the backup slot ID. The backup slot ID is 1 ~ 5, which can be modified in the configuration file
+- The latter table records the statistical information of this plugin: time online time in seconds, backuptime automatic backup time in minutes, killNPCnum the number of NPCs killed, killBossID the combination of BossIDs and numbers killed, such as 4~10 means killing the Eye of Cthulhu 10 times, killRareNPCID the combination of the ID and number of rare NPCs killed, point points, hideKillTips whether to hide the white floating word of kill+1, hidePointTips Whether to hide the +1$ pink floating word
+- Points are a test function, which is equivalent to currency. The advantage is that it avoids the bug of Terra's built-in network card swiping money and the bug of monsters picking up money (making money depreciate rapidly). Points can be obtained by killing monsters. The purpose is to use this plug-in as a pre-plug-in in the future to use statistical information such as points to realize functions such as commodity purchases. Currently, it is disabled by default. You can enable it
+- Seeing that there are quite a lot of command permissions, in fact, it is only recommended to give the default players `zhipm.save`, `zhipm.sort`, `zhipm.vi`, `zhipm.vs` these permissions are enough, and other commands can be automatically obtained and used by super management.
+- **This plugin has some simple restrictions on player names: the name cannot be pure numbers, the name cannot be completely equal to some instructions of the server, and the first character of the name cannot be a special symbol except [**
 
-## 其他
--  **不要把备份权限和回档权限同时给玩家** ，这样做他们就可以自由刷物品了
-- 该插件本质是对玩家的全方位管理集合，体积大是因为指令占比非常多，并不会占用太多服务器算力
-- 该插件在tshock.sqlite里增加了两个表，Zhipm_PlayerBackUp 和 Zhipm_PlayerExtra，前者表是对 tsCharater 表的备份，主键是 AccAndSlot 由玩家账户ID和备份槽ID组成的 xxx-x 的字符串，备份槽ID 1 ~ 5，可以在配置文件中修改
-- 后者表记录着本插件统计的信息: time 在线时间单位秒，backuptime 自动备份时间单位分钟，killNPCnum 击杀NPC数目，killBossID 击杀BossID和数目的组合，如4~10就是击杀克苏鲁之眼10次，killRareNPCID 击杀罕见NPC的ID和数目的组合，point 点数，hideKillTips 是否隐藏kill+1的白色悬浮字，hidePointTips 是否隐藏+1$的粉色悬浮字
-- 点数是测试功能，相当于货币，优点是避免了泰拉自带的网卡狂刷钱的bug和怪物捡钱的bug(使得钱迅速贬值)，点数可以通过杀怪获得，目的是打算以后以此插件为前置插件用统计信息如点数来实现商品购买等功能，目前默认禁用，你可以启用他
-- 看着指令权限挺多，其实只建议给默认玩家`zhipm.save`, `zhipm.sort`, `zhipm.vi`, `zhipm.vs` 这几个权限就够了，其他的指令超管能自动获取并使用，在游戏内可以用`/zhelp`查阅所有指令的用法，不必牢记所有指令
-- **该插件对玩家名称做了点简单的限制：名字不可以为纯数字，名字不可以完全等于服务器的一些指令，名字的第一个字符不可以是特殊符号除了[**
 
-
-## 已统计好的数据
-- 如果你想利用此插件已整理好的数据，作为前置插件使用请参考，我建议你去看源码。这里简单介绍下
+## Statistical data
+- If you want to use the data organized by this plug-in, please refer to it as a front-end plug-in. I suggest you go to the source code. Here is a brief introduction
 ```
-long Timer;  计时器，记录着服务器运行的时间，单位 1/60 秒
-List<MessPlayer> frePlayers;  被冻结的玩家的集合
-List<ExtraData> edPlayers { get; set; }  所有玩家数据整合的部分
+long Timer;  Timer, recording the running time of the server, unit 1/60 second
+List<MessPlayer> frePlayers;  Collection of frozen players
+List<ExtraData> edPlayers { get; set; }  The part where all player data is integrated
 public class ExtraData
 {
-    /// 账户ID
+    /// Account ID
     int Account;
-    /// 名字
+    /// name
     string Name;
-    /// 在线总时长，单位秒
+    /// Total online time, in seconds
     long time;
-    /// 备份间隔，单位分钟
+    /// Backup interval, in minutes
     int backuptime;
-    /// 击杀生物数
+    /// Number of creatures killed
     int killNPCnum;
-    /// 击杀boss的id统计，id -> 击杀数
+    /// The id statistics of killing the boss, id -> number of kills
     Dictionary<int,int> killBossID;
-    /// 击杀罕见生物的id统计，id -> 击杀数
+    /// The id statistics of killing rare creatures, id -> number of kills
     Dictionary<int,int> killRareNPCID;
-    /// 点数（一个测试功能，相当于货币）
+    /// points (a test function, equivalent to currency)
     long point;
-    /// 是否隐藏击杀 kill + 1 的字
+    /// Whether to hide kill + 1 word
     bool hideKillTips;
-    /// 是否隐藏点数 + 1 $ 的字
+    /// Whether to hide the word with points + 1 $
     bool hidePointTips;
-    ///死亡次数
+    ///Number of deaths
     int deathCount;
 }
 ```
