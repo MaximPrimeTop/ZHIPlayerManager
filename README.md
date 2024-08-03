@@ -3,6 +3,7 @@ Versatile management player plugin
 - originally made by [skywhale-zhi](https://github.com/skywhale-zhi)
 - translated to English by [TheTrueMomo](https://github.com/TheTrueMomo)
 - final patches/translations by Maxthegreat99
+- my dum dum doesn't know how to do stuff so i decided to fork to delete 2 lines of code
 
 # Translated README
 ## Features:
