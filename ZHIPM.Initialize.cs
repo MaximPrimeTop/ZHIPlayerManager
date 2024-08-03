@@ -2147,8 +2147,6 @@ namespace ZHIPlayerManager
                                     }
                                     tsp.SendMessage("You are already online " + timetostring(extraData.time), broadcastColor);
                                     TShock.Log.Info("Player " + extraData.Name + " already online " + timetostring(extraData.time));
-                                    NetMessage.PlayNetSound(new NetMessage.NetSoundInfo(tsp.TPlayer.Center, 4), tsp.Index, -1);
-                                    Projectile.NewProjectile(null, tsp.TPlayer.Center, -Vector2.UnitY * 4f, Main.rand.Next(415, 419), 0, 0f, -1, 0f, 0f, 0f);
                                 }
                             }
                         }
