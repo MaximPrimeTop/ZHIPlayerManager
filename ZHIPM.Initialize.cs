@@ -2182,7 +2182,6 @@ namespace ZHIPlayerManager
                             {
                                 ZPExtraDB.WriteExtraDB(ex);
                                 ZPDataBase.AddZPlayerDB(ts);
-                                ts.SendMessage("Characters has been automatically backed up", new Color(0, 255, 0));
                                 TShock.Log.Info($"【{ts.Name}】's character archived and backed up");
                             }
                         }
